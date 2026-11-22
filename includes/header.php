@@ -12,7 +12,7 @@
     <header class="header">
         <a href="index.php" class="logo">DT209G Laboration 2</a>
 
-        <nav class="nav">
+        <nav>
             <ul>
                 <li><a href="bucketlist.php">Bucketlist</a></li>
                 <li><a href="ai.php">AI</a></li>
