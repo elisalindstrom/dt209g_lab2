@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: localhost
--- Tid vid skapande: 20 nov 2026 kl 15:50
+-- Tid vid skapande: 23 nov 2026 kl 16:01
 -- Serverversion: 10.4.28-MariaDB
 -- PHP-version: 8.2.4
 
@@ -36,6 +36,14 @@ CREATE TABLE `bucketlist` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumpning av Data i tabell `bucketlist`
+--
+
+INSERT INTO `bucketlist` (`id`, `name`, `description`, `priority`, `created_at`) VALUES
+(1, 'Resa till Japan', 'Besöka Tokyo och de södra öarna', 1, '2026-11-22 13:01:08'),
+(3, 'Stå på huvudet', 'Mot en vägg', 2, '2026-11-23 13:42:01');
+
+--
 -- Index för dumpade tabeller
 --
 
@@ -53,7 +61,7 @@ ALTER TABLE `bucketlist`
 -- AUTO_INCREMENT för tabell `bucketlist`
 --
 ALTER TABLE `bucketlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

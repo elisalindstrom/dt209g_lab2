@@ -14,6 +14,9 @@ class Bucketlist
         if ($this->db->connect_errno > 0) {
             die("Error connecting: " . $this->db->connect_error);
         }
+
+        // Säkerställer så att å, ä och ö kan lagras och hämtas
+        $this->db->set_charset("utf8mb4");
     }
 
     // Hämtar all data från databasens tabell bucketlist

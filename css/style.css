@@ -63,6 +63,10 @@ nav ul {
     gap: 3rem;
 }
 
+nav a.active {
+    font-weight: bold;
+}
+
 /* LAYOUT */
 .container {
     width: 100%;

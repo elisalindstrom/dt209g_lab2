@@ -14,10 +14,10 @@
 
         <nav>
             <ul>
-                <li><a href="bucketlist.php">Bucketlist</a></li>
-                <li><a href="ai.php">AI</a></li>
+                <li><a href="bucketlist.php" class="<?= ($title == 'Bucketlist') ? 'active' : ''; ?>">Bucketlist</a></li>
+                <li><a href="ai.php" class="<?= ($title == 'AI') ? 'active' : ''; ?>">AI</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="container">
+    <main class=" container">
