@@ -11,51 +11,61 @@ $bucketlist = new Bucketlist();
 $name = "";
 $description = "";
 $priority = "";
+$message = "";
+
+// Radera post
+if (isset($_GET["deleteid"])) {
+    $deleteid = intval($_GET["deleteid"]);
+
+    if ($bucketlist->deleteItem($deleteid)) {
+        $message .= "<p class='message'>Saken har raderats!</p>";
+    } else {
+        $message .= "<p class='error message'>Fel vid raderingen!</p>";
+    }
+}
+
+// Lägg till post
+// Kontroll om formulär är skickat
+if (isset($_POST["name"])) {
+    $name = $_POST["name"];
+    $description = $_POST["description"];
+    $priority = intval($_POST["priority"]);
+
+    $success = true;
+
+    // Kontroll om formulär är ifyllt
+    if (!$bucketlist->setName($name)) {
+        $success = false;
+        $message .= "<p class='error message'>Du måste ange ett namn!</p>";
+    }
+
+    if (!$bucketlist->setDescription($description)) {
+        $success = false;
+        $message .= "<p class='error message'>Du måste ange en beskrivning!</p>";
+    }
+
+    if (!$bucketlist->setPriority($priority)) {
+        $success = false;
+        $message .= "<p class='error message'>Du måste välja en prioritering!</p>";
+    }
+
+    if ($success) {
+        if ($bucketlist->addItem($name, $description, $priority)) {
+            $message .= "<p class='message'>Ny sak tillagd!</p>";
+            $name = "";
+            $description = "";
+            $priority = 0;
+        } else {
+            $message .= "<p class='error message'>Fel vid lagring!</p>";
+        }
+    }
+}
 ?>
 
 <section>
     <h1>Lägg till ny sak</h1>
-
     <form method="post" action="bucketlist.php" autocomplete="off">
-        <?php
-        // Radera post
-
-        // Lägg till post
-        // Kontroll om formulär är ifylld efter submitted
-        if (isset($_POST["name"])) {
-            $name = $_POST["name"];
-            $description = $_POST["description"];
-            $priority = $_POST["priority"];
-
-            $success = true;
-
-            if (!$bucketlist->setName($name)) {
-                $success = false;
-                echo "<p class='error message'>Du måste ange ett namn!</p>";
-            }
-
-            if (!$bucketlist->setDescription($description)) {
-                $success = false;
-                echo "<p class='error message'>Du måste ange en beskrivning!</p>";
-            }
-
-            if (!$bucketlist->setPriority($priority)) {
-                $success = false;
-                echo "<p class='error message'>Du måste välja en prioritering!</p>";
-            }
-
-            if ($success) {
-                if ($bucketlist->addItem($name, $description, $priority)) {
-                    echo "<p class='message'>Ny sak tillagd!</p>";
-                    $name = "";
-                    $description = "";
-                    $priority = 0;
-                } else {
-                    echo "<p class='error message'>Fel vid lagring!</p>";
-                }
-            }
-        }
-        ?>
+        <?= $message; ?>
         <div>
             <label for="name">Namn</label>
             <input id="name" name="name" type="text" value="<?= $name; ?>">
