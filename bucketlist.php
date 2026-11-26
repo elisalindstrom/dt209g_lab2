@@ -2,16 +2,18 @@
 require_once "includes/config.php";
 require_once "classes/Bucketlist.class.php";
 
-$title = "Bucketlist";
-include("includes/header.php");
-
 // Skapar objekt
 $bucketlist = new Bucketlist();
 
 $name = "";
 $description = "";
-$priority = "";
+$priority = 0;
 $message = "";
+
+// Bekräftelse ny sak tillagd
+if (isset($_GET["added"])) {
+    $message .= "<p class 'message'>Ny sak tillagd!</p>";
+}
 
 // Radera post
 if (isset($_GET["deleteid"])) {
@@ -51,15 +53,16 @@ if (isset($_POST["name"])) {
 
     if ($success) {
         if ($bucketlist->addItem($name, $description, $priority)) {
-            $message .= "<p class='message'>Ny sak tillagd!</p>";
-            $name = "";
-            $description = "";
-            $priority = 0;
+            header("Location: bucketlist.php?added=1");
+            exit();
         } else {
             $message .= "<p class='error message'>Fel vid lagring!</p>";
         }
     }
 }
+
+$title = "Bucketlist";
+include("includes/header.php");
 ?>
 
 <section>

@@ -66,6 +66,7 @@ class Bucketlist
     // Set-metoder för validering
     public function setName(string $name): bool
     {
+        $name = trim($name);
         if ($name != "") {
             $this->name = $name;
             return true;
@@ -76,6 +77,7 @@ class Bucketlist
 
     public function setDescription(string $description): bool
     {
+        $description = trim($description);
         if ($description != "") {
             $this->description = $description;
             return true;
