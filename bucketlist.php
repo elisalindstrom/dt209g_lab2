@@ -12,7 +12,7 @@ $message = "";
 
 // Bekräftelse ny sak tillagd
 if (isset($_GET["added"])) {
-    $message .= "<p class 'message'>Ny sak tillagd!</p>";
+    $message .= "<p class='message'>Ny sak tillagd!</p>";
 }
 
 // Radera post
